@@ -2,6 +2,7 @@ package com.thurau.bookappv1.pkgData;
 
 import com.google.gson.Gson;
 import com.thurau.bookappv1.pkgServices.BookDetailGetService;
+import com.thurau.bookappv1.pkgServices.BookDetailPustService;
 
 public class Database {
     private static Database db = null;
@@ -38,5 +39,21 @@ public class Database {
         }
         return retBook;
 
+    }
+
+    public String insertBook(Book book) throws Exception {
+        BookDetailPustService controller = new BookDetailPustService();
+        BookDetailPustService.setIpHost(ipHost);
+        controller.setBook(book);
+        controller.execute(BookDetailPustService.COMMAND.POST);
+        return controller.get();
+    }
+
+    public String updateBook(Book book) throws Exception {
+        BookDetailPustService controller = new BookDetailPustService();
+        BookDetailPustService.setIpHost(ipHost);
+        controller.setBook(book);
+        controller.execute(BookDetailPustService.COMMAND.PUT);
+        return controller.get();
     }
 }

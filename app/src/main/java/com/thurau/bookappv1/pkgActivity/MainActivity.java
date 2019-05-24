@@ -41,11 +41,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        Database db = Database.newInstance(txtAddress.getText().toString());
+        int bookId = Integer.parseInt(txtId.getText().toString());
+        String title = txtTitle.getText().toString();
+        String author = txtAuthor.getText().toString();
         try {
             switch (id) {
                 case R.id.mitem_get:
-                    int bookId = Integer.parseInt(txtId.getText().toString());
-                    Database db = Database.newInstance(txtAddress.getText().toString());
+
                     Book book = db.getBook(bookId);
                     txtMessage.setText(book.toString());
                     break;
@@ -53,15 +56,16 @@ public class MainActivity extends AppCompatActivity {
 
                     break;
                 case R.id.mitem_insert:
-
+                    Book book1 = new Book(bookId, title, author);
+                    db.insertBook(book1);
                     break;
                 case R.id.mitem_update:
-
+                    Book book2 = new Book(bookId, title, author);
+                    db.insertBook(book2);
                     break;
                 case R.id.mitem_delete:
 
                     break;
-
             }
         } catch (Exception ex) {
             Toast.makeText(this, "Exception in main activity: " + ex.getMessage(), Toast.LENGTH_LONG).show();
@@ -76,9 +80,7 @@ public class MainActivity extends AppCompatActivity {
         txtTitle = findViewById(R.id.txtTitle);
         txtAuthor = findViewById(R.id.txtAuthor);
         spBooks = findViewById(R.id.spBooks);
-        txtMessage=findViewById(R.id.txtMessage);
+        txtMessage = findViewById(R.id.txtMessage);
         adapterBooks = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
     }
-
-
 }
