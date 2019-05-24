@@ -4,9 +4,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.thurau.bookappv1.R;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText txtAuthor;
     private Spinner spBooks;
     private ArrayAdapter<Book> adapterBooks;
+    private TextView txtMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
                     int bookId = Integer.parseInt(txtId.getText().toString());
                     Database db = Database.newInstance(txtAddress.getText().toString());
                     Book book = db.getBook(bookId);
+                    txtMessage.setText(book.toString());
                     break;
                 case R.id.mitem_list:
 
@@ -72,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         txtTitle = findViewById(R.id.txtTitle);
         txtAuthor = findViewById(R.id.txtAuthor);
         spBooks = findViewById(R.id.spBooks);
+        txtMessage=findViewById(R.id.txtMessage);
         adapterBooks = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
     }
 
