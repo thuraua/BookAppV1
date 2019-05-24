@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.thurau.bookappv1.R;
 import com.thurau.bookappv1.pkgData.Book;
+import com.thurau.bookappv1.pkgData.Database;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,7 +41,9 @@ public class MainActivity extends AppCompatActivity {
         try {
             switch (id) {
                 case R.id.mitem_get:
-
+                    int bookId = Integer.parseInt(txtId.getText().toString());
+                    Database db = Database.newInstance(txtAddress.getText().toString());
+                    Book book = db.getBook(bookId);
                     break;
                 case R.id.mitem_list:
 

@@ -4,13 +4,16 @@ import android.os.AsyncTask;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.net.HttpRetryException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class BookDetailGetService extends AsyncTask<String, Void, String> {
     private static final String URL = "/BookServer/Library/BookDetail/";
     private static String ipHost = null;
+
+    public static void setIpHost(String ip) {
+        ipHost = ip;
+    }
 
     @Override
     protected String doInBackground(String... bookinfo) {
